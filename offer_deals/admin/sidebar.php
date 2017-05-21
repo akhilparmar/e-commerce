@@ -13,7 +13,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Users</a></li>
+            <li class="active"><a href="<?php echo BASEURL; ?>admin/users.php"><i class="fa fa-circle-o"></i> Users</a></li>
+            <li class="active"><a href="<?php echo BASEURL; ?>admin/products.php"><i class="fa fa-circle-o"></i> Products</a></li>
           </ul>
         </li>
       </ul>
