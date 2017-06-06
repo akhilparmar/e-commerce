@@ -8,3 +8,7 @@
 	padding: 20px;
 	transition: .5s ease;
 }
+#slider .carousel-inner
+{
+	height:400px;
+}
