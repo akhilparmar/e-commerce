@@ -60,7 +60,7 @@ include_once 'header.php';
 						?>
 						<div class="col-md-4 text-center single_rpoduct_wrapper">
 							<div class="thumbnail product_thumbnail">
-								<a href="<?php echo BASEURL.'/single_product.php?pid='.$products->id; ?>" class="btn btn-default"><img src="<?php echo BASEURL.'assets/images/'.$products->image; ?>" class="img-responsive" /></a>
+								<a href="<?php echo BASEURL.'/single_product.php?pid='.$products->id; ?>" class="btn btn-default"><img style="height: 250px;" src="<?php echo BASEURL.'assets/images/'.$products->image; ?>" class="img-responsive" /></a>
 							</div>
 							<div class="text">
 			                    <h3><a href="#"><?php echo $products->name; ?></a></h3>
