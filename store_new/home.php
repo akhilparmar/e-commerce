@@ -60,13 +60,13 @@ include_once 'header.php';
 						?>
 						<div class="col-md-4 text-center single_rpoduct_wrapper">
 							<div class="thumbnail product_thumbnail">
-								<img src="<?php echo BASEURL.'assets/images/'.$products->image; ?>" class="img-responsive" />
+								<a href="<?php echo BASEURL.'/single_product.php?pid='.$products->id; ?>" class="btn btn-default"><img src="<?php echo BASEURL.'assets/images/'.$products->image; ?>" class="img-responsive" /></a>
 							</div>
 							<div class="text">
 			                    <h3><a href="#"><?php echo $products->name; ?></a></h3>
 			                    <p class="price"><?php echo '$'.$products->price; ?></p>
 			                    <p class="buttons">
-			                        <a href="#" class="btn btn-default">View detail</a>
+			                        <a href="<?php echo BASEURL.'/single_product.php?pid='.$products->id; ?>" class="btn btn-default">View detail</a>
 			                        <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 			                    </p>
 			                </div>
