@@ -1,0 +1,10 @@
+.navbar
+{
+	margin-bottom: 0 !important;
+}
+.product_thumbnail:hover
+{
+	opacity: 0.3;
+	padding: 20px;
+	transition: .5s ease;
+}
