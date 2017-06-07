@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2017 at 09:53 PM
+-- Generation Time: Jun 01, 2017 at 07:15 AM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -63,8 +63,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `image`, `cat_id`, `price`, `qty`, `description`) VALUES
-(1, 'test product111111', '20170102ZRUCZMDMDZYTSPYEA6M4D7I4.png', 5, 324, 5, 'alsidaksjha jhashjd ajsdh hsdhkash dasdjkha shdahs dhashd asdha sd asd asd asdha sda sdhasjd asd asd asd asd asdhas dad asdasa sjdajksdjasdj asjkd kjasdjk ajksdh asjk kaskd ashkdh asjdk ajksdhkas hdahsd hasdh ahsd asd asd asd adashdhasdlhasdljask hdlashas sdalsk dhlasdhlashdasd hd had hshdjadhasdhasd asd ashd asldhasdjasdh hsdal hddjasdhasdh hjjj h hjdasd jhas ad ashj asd as ada sdha sdas dashd ahd asdasl dhlasdlh ashldj adalsl dkasl dkasd asld asjd asld asdasd hasdashdsajkd'),
-(4, 'test product 3', 'Tulips.jpg', 0, 23234, 5, 'dasdasdasdasdad asdashd ajd dajkdah dadad ad dad ad ada sdjkas ajdad ajsdasdj asjd asd asd ad akjsdj akjldhskdhaldhkasd adhja dkasdj asdjd haskd asd asd ajd adasjk dasdskdjaka da ad jkdhkasdh klahdajskld haldlh dahd ahdad ahdlalk ahdahashlda hdlahda ahdhdadh ahsadhkaldhashdahd hadh hd ahdasdl hlkasahk dahld hasdh; a;shdhka; dasdkasdjk \'asdad\'asd kjasdj kasjkd ajkd as\'jj\' as\'j adjasd \'ajsdjasdj\'d jasd\'ljka jdjasd j\'lasd\'jsa\'dj sajdj\' asdj\' las\'jda\'j sd\'jasd \'ajd\'ljkas\'ld \'ljasdkl\' asd a\'sljd j\'asj\'d as\'d\' asdj \'asds \'sad\'jkas djk\'asjd j\'kdasj\'djas jadj as\'jd as\'jd aj\'kdj\'asjdk asdjkas \'jda j\'adj ad\'jaj dajsdjkls daj\'d aj\'da j\'da jajd\' as jdasj\'da \'jd j\'dadj\'asj\'dasj\'d jl');
+(1, 'test product', 'Lighthouse.jpg', 3, 324, 5, ''),
+(4, 'test product 3', 'Penguins.jpg', 1, 23234, 5, 'dasdasdasdasdad');
 
 -- --------------------------------------------------------
 
@@ -78,13 +78,6 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `name`, `email`, `password`) VALUES
-(2, 'test', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6');
 
 --
 -- Indexes for dumped tables
@@ -126,7 +119,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

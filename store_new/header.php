@@ -39,6 +39,7 @@
 	      	if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id']))
 	      	{
 				?>
+				<li><a href="<?php echo BASEURL.'user_profile.php?uid='.$_SESSION['user_id']; ?>" > Profile</a></li>
 				<li><a href="logout.php"> Logout</a></li>
 				<?php 	
 			}
