@@ -8,6 +8,27 @@ if (!isset($_SESSION['user_id'])) {
 include_once 'dbconnect.php';
 include_once 'header.php';
 
+if(isset($_POST['update_cart']))
+{
+	print_r($_POST);exit;
+}
+?>
+<script>
+/**
+* function calculates sub total for particular product 
+* 
+* @return
+*/
+function update_subtotal(id, qty)
+{
+	price = $('#price_'+id).val();
+	unit_price = price*qty;
+	$('#subtotal_'+id).html('$'+unit_price);
+	$('#subtotal_hidden_'+id).val(unit_price);
+}
+</script>
+<?php
+
 if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 {
 	?>
@@ -22,7 +43,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 
         <div class="col-md-9" id="basket">
             <div class="box">
-                <form method="post" action="checkout1.html">
+                <form method="post" action="">
                     <h1>Shopping cart</h1>
                     <p class="text-muted">You currently have <?php echo count($_SESSION['cart']); ?> item(s) in your cart.</p>
                     <div class="table-responsive">
@@ -32,7 +53,6 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
                                     <th colspan="2">Product</th>
                                     <th>Quantity</th>
                                     <th>Unit price</th>
-                                    <th>Discount</th>
                                     <th colspan="2">Total</th>
                                 </tr>
                             </thead>
@@ -55,11 +75,11 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 	                                    <td><a href="#"><?php echo $products->name; ?></a>
 	                                    </td>
 	                                    <td>
-	                                        <input type="number" value="1" class="form-control">
+	                                        <input type="number" onchange="update_subtotal(<?php echo $cart_item; ?>,this.value)" id="qty_<?php echo $cart_item; ?>" name="qty" value="1" class="form-control">
+	                                        <input type="hidden" id="price_<?php echo $cart_item; ?>" name="product_price" value="<?php echo $products->price; ?>" class="form-control">
 	                                    </td>
-	                                    <td><?php echo '$'.$products->price; ?></td>
-	                                    <td>$0.00</td>
-	                                    <td><?php echo '$'.$products->price; ?></td>
+	                                    <td id="unit_<?php echo $cart_item; ?>"><?php echo '$'.$products->price; ?><input type="hidden" id="unit_hidden_<?php echo $cart_item; ?>"></td>
+	                                    <td id="subtotal_<?php echo $cart_item; ?>"><?php echo '$'.$products->price; ?><input type="hidden" id="subtotal_hidden_<?php echo $cart_item; ?>"></td>
 	                                    <td><a href="#"><i class="fa fa-trash-o"></i></a>
 	                                    </td>
 	                                </tr>
@@ -86,7 +106,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
                             <a href="category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
+                            <button class="btn btn-default" type="submit" name="update_cart"><i class="fa fa-refresh"></i> Update basket</button>
                             <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
                             </button>
                         </div>
