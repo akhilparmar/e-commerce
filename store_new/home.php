@@ -67,7 +67,7 @@ include_once 'header.php';
 			                    <p class="price"><?php echo '$'.$products->price; ?></p>
 			                    <p class="buttons">
 			                        <a href="<?php echo BASEURL.'/single_product.php?pid='.$products->id; ?>" class="btn btn-default">View detail</a>
-			                        <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+			                        <a href="<?php echo BASEURL.'/add_to_cart.php?pid='.$products->id; ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 			                    </p>
 			                </div>
 						</div>
