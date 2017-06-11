@@ -35,7 +35,7 @@ if(isset($_REQUEST['p_id']) && !empty($_REQUEST['p_id']))
 
 
 if(isset($_POST['update_product']))
-{
+{	
 	$filename= '';
 	if(isset($_FILES['product_img']['name']) && !empty($_FILES['product_img']['name']))
 	{
@@ -67,7 +67,7 @@ if(isset($_POST['update_product']))
 		}
 	}
 	
-	$update_product = mysqli_query($con, "update products set name='".$_POST['name']."', cat_id='".$_POST['cat_id']."', price='".$_POST['price']."', qty='".$_POST['qty']."', description='".$_POST['description']."' where id=".$_POST['product_id'] );	
+	$update_product = mysqli_query($con, "update products set name='".$_POST['name']."', cat_id='".$_POST['cat_id']."', price='".$_POST['price']."', qty='".$_POST['qty']."', description='".addslashes($_POST['description'])."' where id=".$_POST['product_id'] );	
 	
 	
 	if(!empty($filename))

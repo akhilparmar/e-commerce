@@ -59,9 +59,6 @@ include_once 'header.php';
 			    </div>
 			    <div role="tabpanel" class="tab-pane" id="shipping"></div>
 			  </div>
-			
-
-				
 			</div>
 		</div>
 	</section>

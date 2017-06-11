@@ -40,28 +40,19 @@
 	      	{
 				?>
 				<li><a href="<?php echo BASEURL.'user_profile.php?uid='.$_SESSION['user_id']; ?>" > Profile</a></li>
+				<li><a href="<?php echo BASEURL.'cart.php'; ?>" > Cart(<?php if(!empty($_SESSION['cart'])){ echo count($_SESSION['cart']); }else {echo '0';  } ?>)</a></li>
 				<li><a href="logout.php"> Logout</a></li>
 				<?php 	
 			}
 			else
 			{
 				?>
+				<li><a href="<?php echo BASEURL.'cart.php'; ?>" > Cart(<?php if(!empty($_SESSION['cart'])){ echo count($_SESSION['cart']); }else {echo '0';  } ?>)</a></li>
 				<li><a href="login.php"> Login</a></li>
 				<li><a href="register.php"> register</a></li>
 				<?php 
 			}
 	      	?>
-	        
-	        <!--<li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" >Dropdown <span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">Action</a></li>
-	            <li><a href="#">Another action</a></li>
-	            <li><a href="#">Something else here</a></li>
-	            <li role="separator" class="divider"></li>
-	            <li><a href="#">Separated link</a></li>
-	          </ul>
-	        </li>-->
 	      </ul>
 	    </div>
 	  </div>

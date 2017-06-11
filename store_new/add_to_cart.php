@@ -11,18 +11,34 @@ include_once 'dbconnect.php';
 if(isset($_REQUEST['pid']) && !empty($_REQUEST['pid']))
 {
 	if(!empty($_SESSION['cart']))
-	{
-		if(!in_array($_REQUEST['pid'], $_SESSION['cart']))
-			array_push($_SESSION['cart'], $_REQUEST['pid']);	
-			
-			
+	{	
+		if(!array_key_exists ($_REQUEST['pid'] , $_SESSION['cart']))
+		{
+			$cart_item = array();
+			$cart_item['id'] = $_REQUEST['pid'];
+			$cart_item['qty'] = 1;
+			$_SESSION['cart'][$_REQUEST['pid']] = $cart_item;
+		}
+		else
+		{
+			foreach($_SESSION['cart'] as $item)
+			{
+				if($item['id'] == $_REQUEST['pid'])
+				{
+					$_SESSION['cart'][$item['id']]['qty'] += 1; 		
+				}
+			} 
+		}
 		header("location:".BASEURL."cart.php");	
 	}
 	else
 	{
 		$_SESSION['cart'] = array();
-		array_push($_SESSION['cart'], $_REQUEST['pid']);
-		
+		$cart_item = array();
+		$cart_item['id'] = $_REQUEST['pid'];
+		$cart_item['qty'] = 1;
+		$_SESSION['cart'][$_REQUEST['pid']] = $cart_item;
+		//array_push($_SESSION['cart'], $cart_item);
 		header("location:".BASEURL."cart.php");
 	}
 }

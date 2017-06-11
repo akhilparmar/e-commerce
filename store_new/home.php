@@ -4,7 +4,10 @@
 /*if (!isset($_SESSION['user_id'])) {
 	header("Location: login.php");
 }*/
-
+if(isset($_REQUEST['clear_cart']) && $_REQUEST['clear_cart'])
+{
+	unset($_SESSION['cart']);
+}
 include_once 'dbconnect.php';
 include_once 'header.php';
 ?>
@@ -60,14 +63,14 @@ include_once 'header.php';
 						?>
 						<div class="col-md-4 text-center single_rpoduct_wrapper">
 							<div class="thumbnail product_thumbnail">
-								<a href="<?php echo BASEURL.'/single_product.php?pid='.$products->id; ?>" class="btn btn-default"><img style="height: 250px;" src="<?php echo BASEURL.'assets/images/'.$products->image; ?>" class="img-responsive" /></a>
+								<a href="<?php echo BASEURL.'single_product.php?pid='.$products->id; ?>" class="btn btn-default"><img style="height: 250px;" src="<?php echo BASEURL.'assets/images/'.$products->image; ?>" class="img-responsive" /></a>
 							</div>
 							<div class="text">
 			                    <h3><a href="#"><?php echo $products->name; ?></a></h3>
 			                    <p class="price"><?php echo '$'.$products->price; ?></p>
 			                    <p class="buttons">
-			                        <a href="<?php echo BASEURL.'/single_product.php?pid='.$products->id; ?>" class="btn btn-default">View detail</a>
-			                        <a href="<?php echo BASEURL.'/add_to_cart.php?pid='.$products->id; ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+			                        <a href="<?php echo BASEURL.'single_product.php?pid='.$products->id; ?>" class="btn btn-default">View detail</a>
+			                        <a href="<?php echo BASEURL.'add_to_cart.php?pid='.$products->id; ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 			                    </p>
 			                </div>
 						</div>
