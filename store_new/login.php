@@ -39,31 +39,63 @@ if (isset($_POST['btn-login'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="<?php echo BASEURL; ?>style.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<!--<link rel="stylesheet" href="<?php echo BASEURL; ?>style.css" />-->
+	<style>
+	body{
+		background:url('assets/images/background.jpg');	
+	} 
+	.wrapper
+	{
+		height:100%;
+		width: 100%;
+		background-color:rgba(0,0,0,0.5);
+		z-index:-1; 
+		top: 0;
+		left: 0;
+		position: absolute;
+	}
+	.login-area
+	{
+		margin-top: 150px;
+	}
+	</style>
 </head>
 <body>
+
 <?php
 if(isset($msg)){
 	echo $msg;
 }
 ?>
-<form action="" method="post">
-  <div class="container">
-  	<h2 style="text-align: center;">Sign In</h2>
-    <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Username" name="email" required>
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-        
-    <button type="submit" name="btn-login">Login</button>
-    <div>Do not have account? <a href="<?php echo BASEURL; ?>register.php">Sign up here</a></div>
+<div class="wrapper"></div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 login-area">
+				<div class="panel panel-primary">
+					<div class="panel-heading text-center">Sign In</div>
+					<div class="panel-body">
+						<form action="" method="post">
+						  <div class="form-group">
+						    <label for="exampleInputEmail1">Email address</label>
+						    <input type="email" class="form-control" placeholder="Enter Username" name="email" required="required" placeholder="Email" />
+						  </div>
+						  <div class="form-group">
+						    <label for="exampleInputPassword1">Password</label>
+						    <input type="password" class="form-control" placeholder="Enter Password" name="password" required>
+						  </div>
+						  <button type="submit" name="btn-login" class="btn btn-primary">Login</button>
+						  <br />
+						  <br />
+						  
+						  <div>Do not have account? <a href="<?php echo BASEURL; ?>register.php">Sign up here</a></div>
     <div><a href="<?php echo BASEURL; ?>forget.php">Forget password ?</a></div>
-    
-  </div>
-</form>
-
-
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
 
 </body>
 </html>
