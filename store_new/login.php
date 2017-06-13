@@ -89,7 +89,7 @@ if(isset($msg)){
 						  <br />
 						  
 						  <div>Do not have account? <a href="<?php echo BASEURL; ?>register.php">Sign up here</a></div>
-    <div><a href="<?php echo BASEURL; ?>forget.php">Forget password ?</a></div>
+    					  <!--<div><a href="<?php echo BASEURL; ?>forget.php">Forget password ?</a></div>-->
 						</form>
 					</div>
 				</div>

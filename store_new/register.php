@@ -6,7 +6,6 @@ if (isset($_SESSION['user_id'])!="") {
 require_once 'dbconnect.php';
 
 if(isset($_POST['btn-signup'])) {
-	print_r($_POST);exit;
 	$uname = $_POST['username'];
 	$email = $_POST['email'];
 	$upass = $_POST['password'];
@@ -105,32 +104,5 @@ if(isset($_POST['btn-signup'])) {
 				</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-		<!--<form action="" method="post">
-		  <div class="container">
-		  	<h2 style="text-align: center;">Signup Form</h2>
-		    <label><b>Username</b></label>
-		    <input type="text" placeholder="Enter username" name="username" required>
-		    
-		    <label><b>Email</b></label>
-		    <input type="text" placeholder="Enter Email" name="email" required>
-
-		    <label><b>Password</b></label>
-		    <input type="password" placeholder="Enter Password" name="password" required>
-		   
-		    <div class="clearfix">
-		      <button type="submit" name="btn-signup" class="signupbtn">Sign Up</button>
-		    </div>
-		    <div>Already have account? <a href="<?php echo BASEURL; ?>register.php">Sign in here</a></div>
-		  </div>
-		</form>-->
 </body>
 </html>
