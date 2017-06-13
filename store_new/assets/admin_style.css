@@ -1,6 +1,6 @@
 body{
 	margin: 0 auto;
-	
+	background-color:#555;
 }
 .header-top .left-column
 {
@@ -58,6 +58,7 @@ body{
 {
 	float: left;
 	width: 80%;
+	height: auto;
 	background-color: #ddd;
 }
 .form-control {

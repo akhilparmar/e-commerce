@@ -76,6 +76,11 @@ if(isset($_POST['btn-signup'])) {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 login-area">
+					<?php
+					if(isset($msg)){
+						echo $msg;
+					}
+					?>
 					<div class="panel panel-primary">
 						<div class="panel-heading text-center">Sign In</div>
 						<div class="panel-body">

@@ -38,7 +38,8 @@ if(isset($_REQUEST['pid']) && !empty($_REQUEST['pid']))
 		$cart_item['id'] = $_REQUEST['pid'];
 		$cart_item['qty'] = 1;
 		$_SESSION['cart'][$_REQUEST['pid']] = $cart_item;
-		//array_push($_SESSION['cart'], $cart_item);
+		
+		//redirect to cart
 		header("location:".BASEURL."cart.php");
 	}
 }

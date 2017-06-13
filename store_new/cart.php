@@ -53,8 +53,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
                             	<?php
                             	//cart total
                             	$total = 0;
-                            	//serial number fgor generate dynamic id
-                            	$sr_no = 1;
+
                             	foreach($_SESSION['cart'] as $key=>$cart_item)
 								{
 									$product_query = mysqli_query($con, "select * from products where id=".$key);
@@ -70,7 +69,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 	                                    	<a href="#"><?php echo $products->name; ?></a>
 	                                    </td>
 	                                    <td>
-	                                        <input type="number" onchange="update_subtotal(<?php echo $cart_item['id']; ?>,this.value)" id="qty_<?php echo $cart_item['id']; ?>" name="qty_<?php echo $cart_item['id'];?>" value="<?php echo $cart_item['qty']; ?>" class="form-control" />
+	                                        <input type="number" id="qty_<?php echo $cart_item['id']; ?>" name="qty_<?php echo $cart_item['id'];?>" value="<?php echo $cart_item['qty']; ?>" class="form-control" />
 	                                    </td>
 	                                    <td id="unit_<?php echo $cart_item['id']; ?>">
 	                                    	<?php echo '$'.$products->price; ?>
@@ -82,7 +81,6 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 									<?php 
 									
 									$total += ($products->price * $cart_item['qty']);
-									$sr_no++;
 								}
 								?>
                                 
@@ -103,7 +101,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
                             <a href="<?php echo BASEURL; ?>" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-default" type="submit" onclick="update_cart();" name="update_cart"><i class="fa fa-refresh"></i> Update basket</button>
+                            <button class="btn btn-default" type="submit" name="update_cart"><i class="fa fa-refresh"></i> Update basket</button>
                             
                             <?php
                             if(!isset($_SESSION['user_id']))
@@ -152,5 +150,5 @@ else
 }
 ?>
 <?php
-include_once 'footer.php';
+//include_once 'footer.php';
 ?>
