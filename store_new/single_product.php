@@ -1,11 +1,8 @@
 <?php
 @session_start();
-
-/*if (!isset($_SESSION['user_id'])) {
-	header("Location: login.php");
-}*/
-
+//defininf database connection
 include_once 'dbconnect.php';
+//including header
 include_once 'header.php';
 ?>
 <div class="container">
@@ -13,6 +10,7 @@ include_once 'header.php';
 		<div class="row">
 			<div class="col-md-12">
 			<?php 
+			//displaying single product detail
 			if(isset($_REQUEST['pid']) && !empty($_REQUEST['pid']))
 			{
 				$product_query = mysqli_query($con, "SELECT * FROM products where id=".$_REQUEST['pid'] );

@@ -1,25 +1,29 @@
 <?php
-session_start();
+@session_start();
 
+//redirect to home page if the session is set
 if (isset($_SESSION['user_id'])!="") {
 	header("Location: home.php");
 	exit;
 }
 
+//including database connection
 require_once 'dbconnect.php';
 
+
+//if there is post request frm login form 
 if (isset($_POST['btn-login'])) {
 	
 		
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);	
+	//check if the username and password is right
 	$query = mysqli_query($con, "SELECT * FROM user WHERE email='$email' and password='$password'" );
 	$result = mysqli_fetch_object($query);
 	
 	$count = mysqli_num_rows($query); 
 	
 	// if email/password are correct returns must be 1 row
-	
 	if ($count > 0) 
 	{
 		$_SESSION['user_id'] = $result->id;
@@ -40,7 +44,7 @@ if (isset($_POST['btn-login'])) {
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<!--<link rel="stylesheet" href="<?php echo BASEURL; ?>style.css" />-->
+	
 	<style>
 	body{
 		background:url('assets/images/background.jpg');	
@@ -90,7 +94,6 @@ if (isset($_POST['btn-login'])) {
 						  <br />
 						  
 						  <div>Do not have account? <a href="<?php echo BASEURL; ?>register.php">Sign up here</a></div>
-    					  <!--<div><a href="<?php echo BASEURL; ?>forget.php">Forget password ?</a></div>-->
 						</form>
 					</div>
 				</div>

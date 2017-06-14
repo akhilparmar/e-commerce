@@ -1,11 +1,10 @@
 <?php
 @session_start();
 
-/*if (!isset($_SESSION['user_id'])) {
-	header("Location: login.php");
-}*/
 
+//connectiong to the database
 include_once 'dbconnect.php';
+//including the headerfile
 include_once 'header.php';
 
 ?>
@@ -24,6 +23,7 @@ include_once 'header.php';
 			  <div class="tab-content">
 			    <div role="tabpanel" class="tab-pane active" id="basic">
 			    	<?php 
+			    	   //if the prodcuct is available then diplay product details
 						if(isset($_REQUEST['uid']) && !empty($_REQUEST['uid']))
 						{
 							$user_query = mysqli_query($con, "SELECT * FROM user where id=".$_REQUEST['uid'] );

@@ -1,15 +1,32 @@
 <?php
+//starting session
 @session_start();
 
+//including database connection
 include_once 'dbconnect.php';
+//including the header 
 include_once 'header.php';
 ?>
+
+
 <script>
+
+/**
+* function for place the order
+* if the user is logged in already
+* @redirect tp tje home
+*/
 function place_order()
 {
 	alert('Thank you, your order has been placed successfully...');
 	window.location = "<?php echo BASEURL.'?clear_cart=1'; ?>";
 }
+
+/**
+* this function will redirect the user to the login page
+* 
+* @redirect to the login page
+*/
 function go_to_login()
 {
 	alert('Please Login to place the order. You will redirected to the Login page....');
@@ -17,20 +34,26 @@ function go_to_login()
 }
 </script>
 <?php
+
+//if the request is for delete an item from the cart
 if(isset($_REQUEST['del_id']) && !empty($_REQUEST['del_id']))
 {
+	//unsets the item from the cart
 	unset($_SESSION['cart'][$_REQUEST['del_id']]);
 }
 
+
+// if the user updates cart
 if(isset($_POST['update_cart']))
 {
 	foreach($_SESSION['cart'] as $key=>$cart_item)
 	{
+		//set the quantity user updates in the cart
 		$_SESSION['cart'][$key]['qty'] = $_POST['qty_'.$key];
 	}
 }
 
-
+//display the cart data if there is any item in the cart
 if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 {
 	?>
@@ -56,6 +79,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 
                             	foreach($_SESSION['cart'] as $key=>$cart_item)
 								{
+									//selects the product data from the database for each products in the cart
 									$product_query = mysqli_query($con, "select * from products where id=".$key);
 									$products = mysqli_fetch_object($product_query);
 									?>
@@ -66,20 +90,20 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 	                                        </a>
 	                                    </td>
 	                                    <td>
-	                                    	<a href="#"><?php echo $products->name; ?></a>
+	                                    	<a href="#"><?php if(!empty($products->name)){echo $products->name;} ?></a>
 	                                    </td>
 	                                    <td>
 	                                        <input type="number" id="qty_<?php echo $cart_item['id']; ?>" name="qty_<?php echo $cart_item['id'];?>" value="<?php echo $cart_item['qty']; ?>" class="form-control" />
 	                                    </td>
 	                                    <td id="unit_<?php echo $cart_item['id']; ?>">
-	                                    	<?php echo '$'.$products->price; ?>
+	                                    	<?php if(!empty($products->price)){echo '$'.$products->price;} ?>
 	                                    </td>
 	                                    <td>
 	                                    	<a href="<?php echo BASEURL.'cart.php?del_id='.$cart_item['id']; ?>"><i class="fa fa-trash-o"></i>Delete</a>
 	                                    </td>
 	                                </tr>
 									<?php 
-									
+									//calculate the total for all the items in the cart
 									$total += ($products->price * $cart_item['qty']);
 								}
 								?>
@@ -104,6 +128,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
                             <button class="btn btn-default" type="submit" name="update_cart"><i class="fa fa-refresh"></i> Update basket</button>
                             
                             <?php
+                            //setting up the button based on user is logged in or not.
                             if(!isset($_SESSION['user_id']))
                             {
 								?>
@@ -129,7 +154,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
     </div>
     <?php
 }
-else
+else//display cart empty message if the cart is empty
 {
 	?>
 	<div class="container">

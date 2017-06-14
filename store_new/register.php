@@ -1,23 +1,31 @@
 <?php
-session_start();
+@session_start();
+
+//redirect to home page if the session is set
 if (isset($_SESSION['user_id'])!="") {
 	header("Location: home.php");
+	exit;
 }
+
+//including database connection
 require_once 'dbconnect.php';
 
+
+//if there is post request from register form 
 if(isset($_POST['btn-signup'])) {
 	$uname = $_POST['username'];
 	$email = $_POST['email'];
 	$upass = $_POST['password'];
 	
+	//create an hased md5 password
 	$hashed_password = md5($upass); 
-	// this function works only in PHP 5.5 or latest version
 	
+	//check if the email is already exists
 	$check_email = mysqli_query($con, "SELECT email FROM user WHERE email='$email'");
 	$count = mysqli_num_rows($check_email);
 	
 	if ($count==0) {
-		
+		//insert the data if the email not found	
 		$query = mysqli_query($con, "INSERT INTO user(name,email,password) VALUES('$uname','$email','$hashed_password')");
 
 		if ($query) {

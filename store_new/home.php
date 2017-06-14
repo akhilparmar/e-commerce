@@ -1,14 +1,15 @@
 <?php
 @session_start();
 
-/*if (!isset($_SESSION['user_id'])) {
-	header("Location: login.php");
-}*/
+//if the order is successfully placed and cart is need to be clear.
 if(isset($_REQUEST['clear_cart']) && $_REQUEST['clear_cart'])
 {
 	unset($_SESSION['cart']);
 }
+
+//including database connection
 include_once 'dbconnect.php';
+//including the header
 include_once 'header.php';
 ?>
 <div id="slider" class="carousel slide" data-ride="carousel">
@@ -55,7 +56,7 @@ include_once 'header.php';
 			<?php 
 			$product_query = mysqli_query($con, "SELECT * FROM products" );
 			$count = mysqli_num_rows($product_query);
-
+			//display the products if available
 			if($count > 0)
 			{
 					while($products = mysqli_fetch_object($product_query))
