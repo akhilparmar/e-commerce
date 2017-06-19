@@ -12,18 +12,15 @@ if(!isset($_REQUEST['uid']))
 
 //if there is post request from reset form 
 if(isset($_POST['btn-reset'])) {
-	
-	print_r($_POST);exit;
 	$pass = $_POST['password'];
 	$cpass = $_POST['cpassword'];
 	if($pass == $cpass)
 	{
-		echo 234234234;exit;
 		//create an hased md5 password
 		$hashed_password = md5($upass); 
 		
 			//insert the data if the email not found	
-			$query = mysqli_query($con, "UPDATE user password=".$hashed_password);
+			$query = mysqli_query($con, "UPDATE user set password=".$hashed_password." where id=".$_REQUEST['uid']);
 
 			if ($query) {
 				$msg = "<div class='alert alert-success'>
