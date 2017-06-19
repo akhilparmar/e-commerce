@@ -10,7 +10,6 @@ if (isset($_SESSION['user_id'])!="") {
 //including database connection
 require_once 'dbconnect.php';
 
-
 //if there is post request from register form 
 if(isset($_POST['btn-signup'])) {
 	$uname = $_POST['username'];
@@ -25,19 +24,29 @@ if(isset($_POST['btn-signup'])) {
 	$count = mysqli_num_rows($check_email);
 	
 	if ($count==0) {
-		//insert the data if the email not found	
-		$query = mysqli_query($con, "INSERT INTO user(name,email,password) VALUES('$uname','$email','$hashed_password')");
-
-		if ($query) {
-			$msg = "<div class='alert alert-success'>
-						<span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully registered !
-					</div>";
-		}else {
-			$msg = "<div class='alert alert-danger'>
-						<span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while registering !
-					</div>";
-		}
+		$subject = "";
+		$link = BASEURL."confirm_email.php?uname=".$uname."&email=".$email."&upass=".$upass;
+		$message = "Welcome to our store.. <br /> Please click below link to confirm your Email address and complete the registration process. <br />".$link;
 		
+		// set content-type when sending HTML email
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+		// More headers
+		$headers .= 'From: <nevilgolwala@gmail.com>' . "\r\n";		
+		
+		if(mail($email,$subject,$message,$headers))
+		{
+			$msg = "<div class='alert alert-success'>
+					<span class='glyphicon glyphicon-info-sign'></span> An Email with Confirmation link has been sent to your registerd Email address.
+				</div>";	
+		}
+		else
+		{
+			$msg = "<div class='alert alert-danger'>
+					<span class='glyphicon glyphicon-info-sign'></span> Sorry, fail to send mail. Please try again.
+				</div>";
+		}		
 	} else {
 		
 		

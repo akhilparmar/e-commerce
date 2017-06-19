@@ -94,6 +94,8 @@ if (isset($_POST['btn-login'])) {
 						  <br />
 						  
 						  <div>Do not have account? <a href="<?php echo BASEURL; ?>register.php">Sign up here</a></div>
+						  <br />
+						  <a href="forget_password.php">Forget password ?</a>
 						</form>
 					</div>
 				</div>
