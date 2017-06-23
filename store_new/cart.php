@@ -143,6 +143,20 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 							}
                             ?>
                             
+                            
+                            <form action="/your-server-side-code" method="POST">
+							<script
+							  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							  data-key="pk_test_0NyWbVxpODl39Wku273mi1Ot"
+							  data-amount="2000"
+							  data-name="Demo Site"
+							  data-description="2 widgets"
+							  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+							  data-locale="auto">
+							</script>
+							</form>
+                            
+                            
                         </div>
                     </div>
 
