@@ -6,6 +6,15 @@
 include_once 'dbconnect.php';
 //including the header 
 include_once 'header.php';
+
+
+require_once('stripe/init.php');
+$stripe = array(
+  "secret_key"      => "sk_test_cMlxLKaCbnQzmmaUZ37Aut2k",
+  "publishable_key" => "pk_test_0NyWbVxpODl39Wku273mi1Ot"
+);
+
+\Stripe\Stripe::setApiKey($stripe['secret_key']);
 ?>
 
 
@@ -118,16 +127,17 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
                         </table>
 
                     </div>
+                    <button class="btn btn-default pull-right" type="submit" name="update_cart"><i class="fa fa-refresh"></i> Update basket</button>
                     <!-- /.table-responsive -->
-
-                    <div class="box-footer">
+                </form>
+                <div class="clearfix"></div>
+                <br />
+                <div class="box-footer">
                         <div class="pull-left">
                             <a href="<?php echo BASEURL; ?>" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-default" type="submit" name="update_cart"><i class="fa fa-refresh"></i> Update basket</button>
-                            
-                            <?php
+                              <?php
                             //setting up the button based on user is logged in or not.
                             if(!isset($_SESSION['user_id']))
                             {
@@ -138,30 +148,32 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 							else
 							{
 								?>
-								<button type="button" onclick="place_order()" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></button>
+								<!--<form action="charge.php" method="post">
+								<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+								          data-key="<?php echo $stripe['publishable_key']; ?>"
+								          data-description="Access for a year"
+								          data-amount="5000"
+								          data-locale="auto"></script>
+								</form>-->
+					            <form action="charge.php" method="POST" style="display: inline-block;">
+									<script
+									  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+									  data-key="<?php echo $stripe['publishable_key']; ?>"
+									  data-amount="<?php echo $total;?>"
+									  data-name="Electeronic Cart"
+									  data-description=""
+									  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+									  data-locale="auto">
+									</script>
+									<input type="hidden" name="stripeAmount" value="<?php echo $total;?>" />
+								</form>
+								<!--<button type="button" onclick="place_order()" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></button>-->
 								<?php
 							}
                             ?>
-                            
-                            
-                            <form action="/your-server-side-code" method="POST">
-							<script
-							  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-							  data-key="pk_test_0NyWbVxpODl39Wku273mi1Ot"
-							  data-amount="2000"
-							  data-name="Demo Site"
-							  data-description="2 widgets"
-							  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-							  data-locale="auto">
-							</script>
-							</form>
-                            
-                            
                         </div>
                     </div>
-
-                </form>
-
+				
             </div>
             <!-- /.box -->
         </div>
