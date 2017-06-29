@@ -19,7 +19,7 @@
 
 <?php
 /*if (isset($_SESSION['userSession'])!="") {
-	header("Location: home.php");
+	header("Location: index.php");
 	exit;
 }*/
 require_once 'admin-header.php';

@@ -1,29 +1,32 @@
 <?php
+	//including database connection
+	include_once 'dbconnect.php';
+	
   	require_once('stripe/init.php');
   
 	$stripe = array(
-	  "secret_key"      => "sk_test_cMlxLKaCbnQzmmaUZ37Aut2k",
-	  "publishable_key" => "pk_test_0NyWbVxpODl39Wku273mi1Ot"
+	    "secret_key"      => "sk_test_yrMzZkvPxkgJcGSUOHJdzATw",
+  		"publishable_key" => "pk_test_gld0ORF92yZEasbSA0xNgNgw"
 	);
 
 	\Stripe\Stripe::setApiKey($stripe['secret_key']);
-
+	
 	if(isset($_POST['stripeToken']))
 	{
 		$token  = $_POST['stripeToken'];
 
-		$customer = \Stripe\Customer::create(array(
-		  'email' => $_POST['stripeEmail'],
-		  'source'  => $token
-		));
-
+		// Charge the user's card:
 		$charge = \Stripe\Charge::create(array(
-		  'customer' => $customer->id,
-		  'amount'   => $_POST['stripeAmount'],
-		  'currency' => 'cdn'
+		  "amount" => $_POST['stripeAmount'],
+		  "currency" => "cad",
+		  "description" => "card Payment",
+		  "capture" => false,
+		  "source" => $token,
 		));
-
 		echo '<h1>Thank you, Your Order has been placed Successfully.. </h1>';
-		echo '<a href="<?php echo BASEURL; ?>" class="btn btn-default"><i class="fa fa-chevron-left"></i> Go back to shop</a>';
+		echo '<a href="'.BASEURL.'" class="btn btn-default"><i class="fa fa-chevron-left"></i> Go back to shop</a>';
+		
+		header("location:".BASEURL.'?clear_cart=1');
 	}
+	exit;
 ?>

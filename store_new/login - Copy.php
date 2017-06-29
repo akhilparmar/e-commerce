@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['user_id'])!="") {
-	header("Location: home.php");
+	header("Location: index.php");
 	exit;
 }
 
@@ -23,7 +23,7 @@ if (isset($_POST['btn-login'])) {
 	if ($count > 0) 
 	{
 		$_SESSION['user_id'] = $result->id;
-		header("Location: home.php");
+		header("Location: index.php");
 	} else {
 		$msg = "<div class='alert alert-danger'>
 					<span class='glyphicon glyphicon-info-sign'></span> &nbsp; Invalid Username or Password !

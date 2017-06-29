@@ -8,8 +8,6 @@ if (isset($_SESSION['admin_user_id'])!="") {
 require_once '../dbconnect.php';
 
 if (isset($_POST['btn-login'])) {
-	
-		
 	$username = $_POST['username'];
 	$password = $_POST['password'];	
 	
@@ -22,12 +20,8 @@ if (isset($_POST['btn-login'])) {
 					<span class='glyphicon glyphicon-info-sign'></span> &nbsp; Invalid Username or Password !
 				</div>";
 	}
-	
 }
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html>

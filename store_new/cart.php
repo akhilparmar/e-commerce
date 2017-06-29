@@ -7,17 +7,13 @@ include_once 'dbconnect.php';
 //including the header 
 include_once 'header.php';
 
-
 require_once('stripe/init.php');
+
 $stripe = array(
-  "secret_key"      => "sk_test_cMlxLKaCbnQzmmaUZ37Aut2k",
-  "publishable_key" => "pk_test_0NyWbVxpODl39Wku273mi1Ot"
+    "secret_key"      => "sk_test_yrMzZkvPxkgJcGSUOHJdzATw",
+	"publishable_key" => "pk_test_gld0ORF92yZEasbSA0xNgNgw"
 );
-
-\Stripe\Stripe::setApiKey($stripe['secret_key']);
 ?>
-
-
 <script>
 
 /**
@@ -121,7 +117,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
                             <tfoot>
                                 <tr>
                                     <th colspan="5">Total</th>
-                                    <th colspan="2"><?php echo '$'.$total; ?></th>
+                                    <th colspan="2"><?php echo '$'.$total.'00'; ?></th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -148,24 +144,20 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 							else
 							{
 								?>
-								<!--<form action="charge.php" method="post">
-								<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-								          data-key="<?php echo $stripe['publishable_key']; ?>"
-								          data-description="Access for a year"
-								          data-amount="5000"
-								          data-locale="auto"></script>
-								</form>-->
+								
+								
 					            <form action="charge.php" method="POST" style="display: inline-block;">
 									<script
 									  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 									  data-key="<?php echo $stripe['publishable_key']; ?>"
-									  data-amount="<?php echo $total;?>"
+									  data-amount="<?php echo $total.'00';?>"
 									  data-name="Electeronic Cart"
 									  data-description=""
 									  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-									  data-locale="auto">
+									  data-locale="auto"
+									  data-currency="cad">
 									</script>
-									<input type="hidden" name="stripeAmount" value="<?php echo $total;?>" />
+									<input type="hidden" name="stripeAmount" value="<?php echo $total.'00';?>" />
 								</form>
 								<!--<button type="button" onclick="place_order()" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></button>-->
 								<?php

@@ -77,7 +77,7 @@ if(isset($_POST['update_product']))
 		{
 			$dir = dirname(dirname(__FILE__))."/assets/images/";
 			unlink($dir.$product_detail->image);
-			header('Location:'.BASEURL.'/admin/products.php');
+			header('Location:'.BASEURL.'admin/products.php');
 		}
 	}
 	

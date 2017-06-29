@@ -24,14 +24,14 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="home.php">Store</a>
+	      <a class="navbar-brand" href="index.php">Store</a>
 	    </div>
 
 	    <!-- Collect the nav links -->
 	    <div class="collapse navbar-collapse" id="navbar-collapse-1">
 	    
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a href="home.php"> Home</a></li>
+	      	<li><a href="index.php"> Home</a></li>
 	      	<?php 
 	      	//check if the user is logged in
 	      	if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id']))

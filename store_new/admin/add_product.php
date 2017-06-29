@@ -19,7 +19,7 @@
 
 <?php
 /*if (isset($_SESSION['userSession'])!="") {
-	header("Location: home.php");
+	header("Location: index.php");
 	exit;
 }*/
 require_once 'admin-header.php';
@@ -27,7 +27,7 @@ require_once 'admin-header.php';
 if(isset($_POST['add_product']))
 {
 	$filename= '';
-	if(isset($_FILES))
+	if(isset($_FILES) && !empty($_FILES["product_img"]))
 	{
 		$target_dir = dirname(dirname(__FILE__))."/assets/images/";
 		$target_file = $target_dir . basename($_FILES["product_img"]["name"]);
@@ -57,9 +57,15 @@ if(isset($_POST['add_product']))
 		}
 	}
 	
-	
-	
-	$query = mysqli_query($con, "Insert into products values('null', '".$_POST['name']."', '".$filename."', '".$_POST['cat_id']."', '".$_POST['price']."', '".$_POST['qty']."', '".$_POST['description']."')" );	
+	$query = mysqli_query($con, "Insert into products ('name', 'image', 'cat_id', 'price', 'qty', 'description') values('".$_POST['name']."', '".$filename."', '".$_POST['cat_id']."', '".$_POST['price']."', '".$_POST['qty']."', '".$_POST['description']."')" );	
+	if($query) 
+	{
+		header("location:".BASEURL."products.php");
+	}
+	else
+	{
+		echo "failed to insert product";
+	}
 }
 ?>
 
