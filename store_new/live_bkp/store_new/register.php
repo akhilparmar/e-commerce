@@ -33,9 +33,10 @@ if(isset($_POST['btn-signup'])) {
 		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 		// More headers
-		$headers .= 'From: <nevilgolwala@gmail.com>' . "\r\n";		
-		
-		if(mail($email,$subject,$message,$headers))
+		//$headers .= 'From: nevilgolwala@gmail.com' . "\r\n"; 
+		$headers .= 'From: <nevilgolwala@gmail.com>' . "\r\n" .
+					'Reply-To: <nevilgolwala@gmail.com>';		
+		if(mail($email,$subject,$message,$headers,'-fwebmaster@example.com'))
 		{
 			$msg = "<div class='alert alert-success'>
 					<span class='glyphicon glyphicon-info-sign'></span> An Email with Confirmation link has been sent to your registerd Email address.

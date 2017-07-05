@@ -1,4 +1,7 @@
 <?php
+	//including database connection
+	include_once 'dbconnect.php';
+	
   	require_once('stripe/init.php');
   
 	$stripe = array(
@@ -22,6 +25,8 @@
 		));
 		echo '<h1>Thank you, Your Order has been placed Successfully.. </h1>';
 		echo '<a href="'.BASEURL.'" class="btn btn-default"><i class="fa fa-chevron-left"></i> Go back to shop</a>';
+		
+		header("location:".BASEURL.'?clear_cart=1');
 	}
 	exit;
 ?>

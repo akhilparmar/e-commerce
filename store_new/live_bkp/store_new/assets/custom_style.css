@@ -1,0 +1,13 @@
+.navbar
+{
+	margin-bottom: 0 !important;
+}
+.product_thumbnail:hover
+{
+	opacity: 0.3;
+	transition: .5s ease;
+}
+#slider .carousel-inner
+{
+	height:400px;
+}

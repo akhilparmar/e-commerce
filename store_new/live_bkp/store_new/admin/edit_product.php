@@ -18,16 +18,26 @@
 </style>
 
 <?php
-/*if (isset($_SESSION['userSession'])!="") {
-	header("Location: index.php");
-	exit;
-}*/
+
 require_once 'admin-header.php';
 
-if(isset($_POST['add_product']))
+if(isset($_REQUEST['p_id']) && !empty($_REQUEST['p_id']))
 {
+	$query = mysqli_query($con, "SELECT * FROM products where id=".$_REQUEST['p_id'] );
+	$count = mysqli_num_rows($query); 
+
+	if($count > 0)
+	{
+		$product_detail = mysqli_fetch_object($query);
+	}
+}
+
+
+
+if(isset($_POST['update_product']))
+{	
 	$filename= '';
-	if(isset($_FILES))
+	if(isset($_FILES['product_img']['name']) && !empty($_FILES['product_img']['name']))
 	{
 		$target_dir = dirname(dirname(__FILE__))."/assets/images/";
 		$target_file = $target_dir . basename($_FILES["product_img"]["name"]);
@@ -57,10 +67,23 @@ if(isset($_POST['add_product']))
 		}
 	}
 	
+	$update_product = mysqli_query($con, "update products set name='".$_POST['name']."', cat_id='".$_POST['cat_id']."', price='".$_POST['price']."', qty='".$_POST['qty']."', description='".addslashes($_POST['description'])."' where id=".$_POST['product_id'] );	
 	
 	
-	$query = mysqli_query($con, "Insert into products values('null', '".$_POST['name']."', '".$filename."', '".$_POST['cat_id']."', '".$_POST['price']."', '".$_POST['qty']."', '".$_POST['description']."')" );	
+	if(!empty($filename))
+	{
+		$update_image = mysqli_query($con, "update products set image='".$filename."' where id=".$_POST['product_id'] );	
+		if($update_image && $update_product)
+		{
+			$dir = dirname(dirname(__FILE__))."/assets/images/";
+			unlink($dir.$product_detail->image);
+			header('Location:'.BASEURL.'admin/products.php');
+		}
+	}
+	
 }
+	
+	
 ?>
 
 
@@ -68,7 +91,7 @@ if(isset($_POST['add_product']))
 <!-- Content Wrapper. Contains page content -->
 <div class="right-column">
 	<div class="section_title">
-		<h2>Add Product</h2>
+		<h2>Edit Product</h2>
 	</div>
 	<!-- Main content -->
 	<section class="content">
@@ -78,34 +101,34 @@ if(isset($_POST['add_product']))
 				<div class="box box-success">
 					
 					<div class="box-body">
-					  	<input class="form-control" name="name" placeholder="Name" type="text"><br />
+						<input class="form-control" type="hidden" name="product_id" value="<?php if(!empty($product_detail->id)){echo $product_detail->id;} ?>" placeholder="Name" />
+					  	<input class="form-control" name="name" value="<?php if(!empty($product_detail->name)){echo $product_detail->name;} ?>" placeholder="Name" type="text"><br />
 					  	
 					  	<?php
 							//select users data
 							$parent_categories = mysqli_query($con, "SELECT * FROM categories" );
 							$count = mysqli_num_rows($parent_categories); 
-							
 						?>
 					  	
 						<select name="cat_id" class="form-control">
-							<option value="0">Select parent category</option>
+							<option value="0">Select category</option>
 							<?php while($parent_cat = mysqli_fetch_object($parent_categories)){
 								  ?>
-								<option value="<?php echo $parent_cat->id; ?>"><?php echo $parent_cat->name; ?></option>
+								<option <?php if($product_detail->cat_id == $parent_cat->id){echo 'selected';}else{echo '';} ?> value="<?php echo $parent_cat->id; ?>"><?php echo $parent_cat->name; ?></option>
 							<?php } ?>
 						</select>
 						<br />
 						<input class="form-control" type="file" name="product_img" /> <br />
-						<input class="form-control" name="price" placeholder="Price" type="text"><br />
-						<input class="form-control" name="qty" placeholder="Qualtity" type="text"><br />
-						<textarea class="form-control" name="description" placeholder="Description"></textarea>
+						<input class="form-control" value="<?php if(!empty($product_detail->price)){echo $product_detail->price;} ?>" name="price" placeholder="Price" type="text"><br />
+						<input class="form-control" value="<?php if(!empty($product_detail->qty)){echo $product_detail->qty;} ?>" name="qty" placeholder="Qualtity" type="text"><br />
+						<textarea class="form-control" name="description" placeholder="Description"><?php if(!empty($product_detail->description)){echo $product_detail->description;} ?></textarea>
 					</div>
 					
 					<!-- /.box-body -->
 				</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button class="btn btn-primary" type="submit" name="add_product" value="Add" class="btn btn-primary">Save </button>
+	        <button class="btn btn-primary" type="submit" name="update_product" value="Add" class="btn btn-primary">Save </button>
 	      </div>
 	      </form>
         
