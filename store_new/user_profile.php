@@ -7,6 +7,22 @@ include_once 'dbconnect.php';
 //including the headerfile
 include_once 'header.php';
 
+
+if(isset($_POST['update']) && !empty($_POST['update']))
+{
+	$query = mysqli_query($con, "UPDATE user set pin='".$_POST['pin_code']."', address = '".$_POST['address']."' where id=".$_REQUEST['uid']);
+
+	if ($query) {
+		$msg = "<div class='alert alert-success'>
+					<span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully Added Your Shipping Details !
+				</div>";
+	}else {
+		$msg = "<div class='alert alert-danger'>
+					<span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while Updating !
+				</div>";
+	}
+}
+
 ?>
 
 <div class="container">
@@ -43,7 +59,16 @@ include_once 'header.php';
 										<div class="col-md-8 text-center">
 											<div class="box">
 				                                <h1 class="text-center"><?php echo $user->name; ?></h1>
-				                               
+				                               	<div class="col-md-12"></div>
+				                               		<label>Your Shipping Details</label>
+				                               		<form method="post" action="">
+				                               			<input class="form-control" type="text" name="pin_code" placeholder="Postal Code" value="<?php echo $user->pin; ?>" />
+				                               			<br />
+				                               			<textarea class="form-control" placeholder="Shipping address" name="address"><?php echo $user->address; ?></textarea>
+				                               			<br />
+				                               			<input type="submit" name="update" class="btn btn-primary">
+				                               		</form>
+				                               	</div>
 				                            </div>
 										</div>
 									</div>									

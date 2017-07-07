@@ -59,7 +59,7 @@ if(isset($_POST['add_product']))
 	
 	
 	
-	$query = mysqli_query($con, "Insert into products values('null', '".$_POST['name']."', '".$filename."', '".$_POST['cat_id']."', '".$_POST['price']."', '".$_POST['qty']."', '".$_POST['description']."')" );	
+	$query = mysqli_query($con, "Insert into products values('null', '".$_POST['name']."', '".$filename."', '".$_POST['cat_id']."', '".$_POST['price']."', '".$_POST['qty']."', '".$_POST['description']."','".$_POST['weight']."')" );	
 }
 ?>
 
@@ -98,6 +98,7 @@ if(isset($_POST['add_product']))
 						<input class="form-control" type="file" name="product_img" /> <br />
 						<input class="form-control" name="price" placeholder="Price" type="text"><br />
 						<input class="form-control" name="qty" placeholder="Qualtity" type="text"><br />
+						<input class="form-control" name="weight" placeholder="Weight eg. 1" type="text"><br />
 						<textarea class="form-control" name="description" placeholder="Description"></textarea>
 					</div>
 					
