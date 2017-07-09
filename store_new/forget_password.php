@@ -27,9 +27,10 @@ if(isset($_POST['send']))
 		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 		// More headers
-		$headers .= 'From: <nevilgolwala@gmail.com>' . "\r\n";		
+		$headers .= 'From: <nevilgolwala@gmail.com>' . "\r\n" .
+					'Reply-To: <nevilgolwala@gmail.com>';		
 		
-		if(mail($email,$subject,$message,$headers))
+		if(mail($email,$subject,$message,$headers,'nevilgolwala@gmail.com'))
 		{
 			$msg = "<div class='alert alert-success'>
 					<span class='glyphicon glyphicon-info-sign'></span> An Email with reset password link has been sent to your registerd Email address.

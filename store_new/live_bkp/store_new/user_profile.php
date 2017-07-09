@@ -43,7 +43,14 @@ include_once 'header.php';
 										<div class="col-md-8 text-center">
 											<div class="box">
 				                                <h1 class="text-center"><?php echo $user->name; ?></h1>
-				                               
+				                               	<div class="col-md-12"></div>
+				                               		<label>Your Shipping Details</label>
+				                               		<form method="post" action="">
+				                               			<input class="form-control" type="text" name="pin_code" placeholder="Postal Code" value="<?php echo $user->pin; ?>" />
+				                               			<textarea class="form-control" placeholder="Shipping address" name="address"><?php echo $user->address; ?></textarea>
+				                               			<input type="submit" name="update" class="btn btn-primary">
+				                               		</form>
+				                               	</div>
 				                            </div>
 										</div>
 									</div>									

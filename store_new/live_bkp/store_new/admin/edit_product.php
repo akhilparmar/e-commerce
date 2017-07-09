@@ -67,7 +67,7 @@ if(isset($_POST['update_product']))
 		}
 	}
 	
-	$update_product = mysqli_query($con, "update products set name='".$_POST['name']."', cat_id='".$_POST['cat_id']."', price='".$_POST['price']."', qty='".$_POST['qty']."', description='".addslashes($_POST['description'])."' where id=".$_POST['product_id'] );	
+	$update_product = mysqli_query($con, "update products set name='".$_POST['name']."', cat_id='".$_POST['cat_id']."', price='".$_POST['price']."', qty='".$_POST['qty']."', description='".addslashes($_POST['description'])."',weight='".$_POST['weight']."' where id=".$_POST['product_id'] );	
 	
 	
 	if(!empty($filename))
@@ -121,6 +121,7 @@ if(isset($_POST['update_product']))
 						<input class="form-control" type="file" name="product_img" /> <br />
 						<input class="form-control" value="<?php if(!empty($product_detail->price)){echo $product_detail->price;} ?>" name="price" placeholder="Price" type="text"><br />
 						<input class="form-control" value="<?php if(!empty($product_detail->qty)){echo $product_detail->qty;} ?>" name="qty" placeholder="Qualtity" type="text"><br />
+						<input class="form-control" value="<?php if(!empty($product_detail->weight)){echo $product_detail->weight;} ?>" name="weight" placeholder="Weight eg. 1" type="text"><br />
 						<textarea class="form-control" name="description" placeholder="Description"><?php if(!empty($product_detail->description)){echo $product_detail->description;} ?></textarea>
 					</div>
 					

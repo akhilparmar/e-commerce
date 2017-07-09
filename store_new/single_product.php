@@ -18,8 +18,9 @@ include_once 'header.php';
 
 				if($count > 0)
 				{
-					while($products = mysqli_fetch_object($product_query))
-					{
+					$products = mysqli_fetch_object($product_query)
+					/*while()
+					{*/
 						?>
 						<div class="col-md-12">
 							<div class="col-md-6 text-center single_rpoduct_wrapper">
@@ -50,16 +51,59 @@ include_once 'header.php';
 		                    </div>
 						</div>
 						<?php
-					}
+					//}
 				}
 			}
 			
 			?>
-
+			
 				
 			</div>
 		</div>
 	</section>
+	
+	<section>
+		<div class="row">
+			<div class="page-header">	
+				<h1>Related Products</h1>
+			</div>
+			<div class="col-md-12">
+				<?php 
+					//check and display suggested products replated to this product
+					if(isset($_REQUEST['pid']) && !empty($_REQUEST['pid']))
+					{
+						$suggested = mysqli_query($con, "SELECT * FROM products where cat_id=".$products->cat_id." AND id !=".$_REQUEST['pid']);
+						$count = mysqli_num_rows($suggested);
+						if($count > 0)
+						{
+							while($s_products = mysqli_fetch_object($suggested))
+							{
+								?>
+								<div class="col-md-4 text-center single_rpoduct_wrapper">
+									<div class="thumbnail product_thumbnail">
+										<a href="<?php echo BASEURL.'single_product.php?pid='.$s_products->id; ?>" class="btn btn-default"><img style="height: 250px;" src="<?php echo BASEURL.'assets/images/'.$s_products->image; ?>" class="img-responsive" /></a>
+									</div>
+									<div class="text">
+					                    <h3><a href="#"><?php echo $s_products->name; ?></a></h3>
+					                    <p class="price"><?php echo '$'.$s_products->price; ?></p>
+					                    <p class="buttons">
+					                        <a href="<?php echo BASEURL.'single_product.php?pid='.$s_products->id; ?>" class="btn btn-default">View detail</a>
+					                    </p>
+					                </div>
+								</div>
+								<?php
+							}
+						}
+						else
+						{
+							echo "No Other Related Products";
+						}
+					}	
+				?>
+			</div>
+		</div>
+	</section>
+	
 </div>
 <?php
 include_once 'footer.php';

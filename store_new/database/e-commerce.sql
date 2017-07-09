@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2017 at 08:06 AM
+-- Generation Time: Jul 09, 2017 at 08:16 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -41,6 +41,21 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `name`, `parent_id`) VALUES
 (5, 'category 1', 0),
 (6, 'test category', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` varchar(500) NOT NULL,
+  `shipping_method` varchar(255) NOT NULL,
+  `total` int(11) NOT NULL,
+  `created_date` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -87,7 +102,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `pin`, `address`) VALUES
-(2, 'test', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', '', ''),
+(2, 'test', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', 'K1K4T3', 'Ahm,edabad gujarat'),
 (3, 'test1', 'test1@test1.com', '5a105e8b9d40e1329780d62ea2265d8a', '380006', 'Ahmedabad, Gujarat'),
 (4, 'test2', 'testt2@gmail.com', 'ad0234829205b9033196ba818f7a872b', '', '');
 
@@ -99,6 +114,12 @@ INSERT INTO `user` (`id`, `name`, `email`, `password`, `pin`, `address`) VALUES
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -122,6 +143,11 @@ ALTER TABLE `user`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `products`
 --

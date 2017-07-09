@@ -21,13 +21,13 @@ include_once 'header.php';
 
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="<?php echo BASEURL.'assets/images/raspberrypi.png'; ?>" alt="raspberrypi">
+      <img src="<?php echo BASEURL.'assets/images/raspberrypi1.png'; ?>" alt="raspberrypi">
       <div class="carousel-caption">
         <h1>Slide 1</h1>
       </div>
     </div>
     <div class="item">
-      <img src="<?php echo BASEURL.'assets/images/raspberrypi.png'; ?>" alt="raspberrypi">
+      <img src="<?php echo BASEURL.'assets/images/raspberrypi1.png'; ?>" alt="raspberrypi">
       <div class="carousel-caption">
          <h1>Slide 2</h1>
       </div>

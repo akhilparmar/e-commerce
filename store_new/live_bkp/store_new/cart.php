@@ -117,7 +117,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
                             <tfoot>
                                 <tr>
                                     <th colspan="5">Total</th>
-                                    <th colspan="2"><?php echo '$'.$total.'00'; ?></th>
+                                    <th colspan="2"><?php echo '$'.$total.'.00'; ?></th>
                                 </tr>
                             </tfoot>
                         </table>

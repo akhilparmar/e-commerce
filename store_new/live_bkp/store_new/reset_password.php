@@ -20,7 +20,7 @@ if(isset($_POST['btn-reset'])) {
 		$hashed_password = md5($upass); 
 		
 			//insert the data if the email not found	
-			$query = mysqli_query($con, "UPDATE user set password=".$hashed_password." where id=".$_REQUEST['uid']);
+			$query = mysqli_query($con, "UPDATE user set password=".$_POST['password']" where id=".$_REQUEST['uid']);
 
 			if ($query) {
 				$msg = "<div class='alert alert-success'>
