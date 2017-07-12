@@ -32,7 +32,7 @@ $count = mysqli_num_rows($query);
 	<div class="right-column">
 
 	<div class="section_title">
-		<h2>Products</h2>
+		<h2>orders</h2>
 	</div>
 	<!-- Main content -->
 	<section class="content">
