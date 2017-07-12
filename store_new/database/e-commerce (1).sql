@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2017 at 08:16 PM
+-- Generation Time: Jul 12, 2017 at 04:34 AM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -57,6 +57,17 @@ CREATE TABLE `orders` (
   `created_date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `product_id`, `shipping_method`, `total`, `created_date`) VALUES
+(1, 2, '[10]', 'Expedited Parcel', 10915, '11-07-17'),
+(2, 2, '[10]', 'Expedited Parcel', 13315, '11-07-17'),
+(3, 2, '[10,11]', 'Priority', 14815, '11-07-17'),
+(4, 2, '[10,11]', 'Xpresspost', 148, '11-07-17'),
+(5, 2, '[10]', 'Expedited Parcel', 25, '11-07-17');
+
 -- --------------------------------------------------------
 
 --
@@ -80,7 +91,9 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `image`, `cat_id`, `price`, `qty`, `description`, `weight`) VALUES
 (10, 'test', 'Lighthouse.jpg', 6, 12, 1, 'fds fsdf sdf ', 2),
-(11, 'test1', 'Koala.jpg', 5, 123, 12, 'asdasd asdasd ad as', 1);
+(11, 'test1', 'Koala.jpg', 5, 123, 12, 'asdasd asdasd ad as', 1),
+(12, 'test', 'Jellyfish.jpg', 5, 12, 1, 'sdf sdf sdf', 1),
+(13, 'fgdfg dfg', '', 6, 3242, 3, 'dsf sdfsdf sdf', 3);
 
 -- --------------------------------------------------------
 
@@ -147,12 +160,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `user`
 --
