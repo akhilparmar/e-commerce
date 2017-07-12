@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2017 at 04:34 AM
+-- Generation Time: Jul 12, 2017 at 08:14 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -40,7 +40,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`, `parent_id`) VALUES
 (5, 'category 1', 0),
-(6, 'test category', 5);
+(6, 'test category1111', 5);
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,8 @@ INSERT INTO `orders` (`id`, `user_id`, `product_id`, `shipping_method`, `total`,
 (2, 2, '[10]', 'Expedited Parcel', 13315, '11-07-17'),
 (3, 2, '[10,11]', 'Priority', 14815, '11-07-17'),
 (4, 2, '[10,11]', 'Xpresspost', 148, '11-07-17'),
-(5, 2, '[10]', 'Expedited Parcel', 25, '11-07-17');
+(5, 2, '[10]', 'Expedited Parcel', 25, '11-07-17'),
+(6, 2, '[10]', 'Priority', 25, '12-07-17');
 
 -- --------------------------------------------------------
 
@@ -90,10 +91,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `image`, `cat_id`, `price`, `qty`, `description`, `weight`) VALUES
-(10, 'test', 'Lighthouse.jpg', 6, 12, 1, 'fds fsdf sdf ', 2),
+(10, 'testttttt', 'Lighthouse.jpg', 6, 12, 1, 'fds fsdf sdf ', 2),
 (11, 'test1', 'Koala.jpg', 5, 123, 12, 'asdasd asdasd ad as', 1),
-(12, 'test', 'Jellyfish.jpg', 5, 12, 1, 'sdf sdf sdf', 1),
-(13, 'fgdfg dfg', '', 6, 3242, 3, 'dsf sdfsdf sdf', 3);
+(12, 'test', 'Jellyfish.jpg', 5, 12, 1, 'sdf sdf sdf', 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +116,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `pin`, `address`) VALUES
 (2, 'test', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', 'K1K4T3', 'Ahm,edabad gujarat'),
-(3, 'test1', 'test1@test1.com', '5a105e8b9d40e1329780d62ea2265d8a', '380006', 'Ahmedabad, Gujarat'),
+(3, 'test12', 'test1@test1.com', '5a105e8b9d40e1329780d62ea2265d8a', '380006', 'Ahmedabad, Gujarat'),
 (4, 'test2', 'testt2@gmail.com', 'ad0234829205b9033196ba818f7a872b', '', '');
 
 --
@@ -160,12 +160,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `user`
 --

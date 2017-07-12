@@ -18,10 +18,6 @@
 </style>
 
 <?php
-/*if (isset($_SESSION['userSession'])!="") {
-	header("Location: index.php");
-	exit;
-}*/
 require_once 'admin-header.php';
 
 if(isset($_POST['add_product']))

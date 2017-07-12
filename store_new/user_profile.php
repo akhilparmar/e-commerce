@@ -7,6 +7,21 @@ include_once 'dbconnect.php';
 //including the headerfile
 include_once 'header.php';
 
+
+if(isset($_POST['update']) && !empty($_POST['update']))
+{
+	$query = mysqli_query($con, "UPDATE user set pin='".$_POST['pin_code']."', address = '".$_POST['address']."' where id=".$_REQUEST['uid']);
+	if ($query) {
+		$msg = "<div class='alert alert-success'>
+					<span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully Added Your Shipping Details !
+				</div>";
+	}else {
+		$msg = "<div class='alert alert-danger'>
+					<span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while Updating !
+				</div>";
+	}
+}
+
 ?>
 
 <div class="container">
