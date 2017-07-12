@@ -28,6 +28,9 @@ include("../dbconnect.php");
 	        <li class="nav-item">
 	            <a class="nav-link" href="<?php echo BASEURL; ?>admin/category.php"">Category</a>
 	        </li>
+	        <li class="nav-item">
+	            <a class="nav-link" href="<?php echo BASEURL; ?>admin/orders.php"">Orders</a>
+	        </li>
         </ul>
     </div>
     
