@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2017 at 08:14 PM
+-- Generation Time: Jul 13, 2017 at 05:23 AM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -107,7 +107,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `pin` varchar(11) DEFAULT NULL,
-  `address` varchar(500) NOT NULL
+  `address` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -117,7 +117,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `pin`, `address`) VALUES
 (2, 'test', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', 'K1K4T3', 'Ahm,edabad gujarat'),
 (3, 'test12', 'test1@test1.com', '5a105e8b9d40e1329780d62ea2265d8a', '380006', 'Ahmedabad, Gujarat'),
-(4, 'test2', 'testt2@gmail.com', 'ad0234829205b9033196ba818f7a872b', '', '');
+(7, 'test444', 'test4@gmail.com', '86985e105f79b95d6bc918fb45ec7727', '', ''),
+(8, 'test444', 'test4@gmail.com', '86985e105f79b95d6bc918fb45ec7727', '', '');
 
 --
 -- Indexes for dumped tables
@@ -170,7 +171,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
