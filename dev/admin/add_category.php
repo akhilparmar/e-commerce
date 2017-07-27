@@ -26,7 +26,11 @@ require_once 'admin-header.php';
 
 if(isset($_POST['add_category']))
 {
-	$query = mysqli_query($con, "Insert into categories values('null', '".$_POST['name']."', '".$_POST['category']."')" );
+	$query = mysqli_query($con, "Insert into categories (name,parent_id) values('".$_POST['name']."', '".$_POST['category']."')" );
+	if($query)
+	{
+		header('location:'.BASEURL.'admin/category.php');
+	}
 }
 ?>
 

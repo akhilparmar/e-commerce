@@ -54,11 +54,41 @@ include_once 'header.php';
 			</div>	
 			<div class="col-md-12">
 			<?php 
-			$product_query = mysqli_query($con, "SELECT * FROM products" );
-			$count = mysqli_num_rows($product_query);
-			//display the products if available
-			if($count > 0)
+			if(isset($_POST['search_key']))
 			{
+				if($search_count > 0)
+				{
+					while($products = mysqli_fetch_object($search_query))
+					{
+						?>
+							<div class="col-md-4 text-center single_rpoduct_wrapper">
+								<div class="thumbnail product_thumbnail">
+									<a href="<?php echo BASEURL.'single_product.php?pid='.$products->id; ?>" class="btn btn-default"><img style="height: 250px;" src="<?php echo BASEURL.'assets/images/'.$products->image; ?>" class="img-responsive" /></a>
+								</div>
+								<div class="text">
+				                    <h3><a href="#"><?php echo $products->name; ?></a></h3>
+				                    <p class="price"><?php echo '$'.$products->price; ?></p>
+				                    <p class="buttons">
+				                        <a href="<?php echo BASEURL.'single_product.php?pid='.$products->id; ?>" class="btn btn-default">View detail</a>
+				                        <a href="<?php echo BASEURL.'add_to_cart.php?pid='.$products->id; ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+				                    </p>
+				                </div>
+							</div>
+						<?php
+					}
+				}
+				else
+				{
+					?><h4>Sorry, No Products found related to your search...</h4><?php	
+				}
+			}
+			else
+			{
+				$product_query = mysqli_query($con, "SELECT * FROM products" );
+				$count = mysqli_num_rows($product_query);
+				//display the products if available
+				if($count > 0)
+				{
 					while($products = mysqli_fetch_object($product_query))
 					{
 						?>
@@ -78,9 +108,8 @@ include_once 'header.php';
 						<?php
 					}
 				}
-			?>
-
-				
+			}
+			?>	
 			</div>
 		</div>
 	</section>

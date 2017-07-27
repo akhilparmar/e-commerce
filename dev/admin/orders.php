@@ -24,7 +24,7 @@
 require_once 'admin-header.php';
 
 //select users data
-$query = mysqli_query($con, "SELECT * FROM orders" );
+$query = mysqli_query($con, "SELECT * FROM orders order by id DESC" );
 $count = mysqli_num_rows($query); 
 ?>
 
@@ -33,6 +33,11 @@ $count = mysqli_num_rows($query);
 
 	<div class="section_title">
 		<h2>orders</h2>
+		<div class="col-md-6 pull-right">
+			<form action="" method="post">
+      			<input name="search_key" value="" placeholder="search" /><input type="submit" name="search" value="search">
+      		</form>
+		</div>
 	</div>
 	<!-- Main content -->
 	<section class="content">
@@ -60,6 +65,64 @@ $count = mysqli_num_rows($query);
 							    </tr>
 							</thead>
 							<tbody>
+							<?php 
+							$search_count = 0;
+							if(isset($_POST['search']))
+							{ 
+						
+								$search_query = mysqli_query($con, "SELECT o.*,u.name FROM orders as o join user as u on o.user_id = u.id WHERE o.id Like '".$_POST['search_key']."%' OR u.name LIKE '".$_POST['search_key']."%'" );
+								$search_count = mysqli_num_rows($search_query); 
+				
+							
+							?>
+							<?php if($search_count > 0){ ?>
+								<?php 
+									$sr_no = 1;
+									while($result = mysqli_fetch_object($search_query)){ 
+								?>    
+								    
+								    <tr role="row">
+										<td class=""><?php echo $sr_no; ?></td>
+										<td class="">
+											<?php 
+											$user_detail_query = mysqli_query($con, "SELECT * FROM user where id=".$result->user_id);	
+											$user_detail = mysqli_fetch_object($user_detail_query);
+											
+											echo $user_detail->name;
+											?>
+										</td>
+										<td class="sorting_1">
+											<?php
+											$products = json_decode($result->product_id);
+											
+										 	foreach($products as $product)
+										 	{
+										 		$product_detail_query = mysqli_query($con, "SELECT * FROM products where id=".$product);	
+										 		$product_detail = mysqli_fetch_object($product_detail_query);
+												echo '-'.$product_detail->name.'<br /><br />';
+											}
+											?>
+										</td>
+										
+										<td class="sorting_1"><?php echo $result->shipping_method	; ?></td>
+										<td class="sorting_1"><?php echo $result->total	; ?></td>
+								    </tr>
+								<?php 
+								$sr_no++;
+								}//end-while 
+								?>
+							    <?php 
+								  }
+								  else
+								  { 
+								?>
+								<tr role="row" class="odd">
+									<td colspan="5"  class="">No Results found</td>
+								</tr>
+							<?php }//end else 
+							}
+							else
+							{ ?>
 							<?php if($count > 0){ ?>
 								<?php 
 									$sr_no = 1;
@@ -102,9 +165,11 @@ $count = mysqli_num_rows($query);
 								  { 
 								?>
 								<tr role="row" class="odd">
-									<td  class="">No Results found</td>
+									<td colspan="5"  class="">No Results found</td>
 								</tr>
-							<?php }//end else ?>
+							<?php }//end else 
+							}//end else 
+							?>
 							</tbody>
 
 						</table>

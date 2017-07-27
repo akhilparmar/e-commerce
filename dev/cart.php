@@ -10,8 +10,8 @@ include_once 'header.php';
 require_once('stripe/init.php');
 
 $stripe = array(
-    "secret_key"      => "sk_test_yrMzZkvPxkgJcGSUOHJdzATw",
-	"publishable_key" => "pk_test_gld0ORF92yZEasbSA0xNgNgw"
+    "secret_key"      => "sk_test_4wOFJ0Nc8GBEH9WlrIkxGifz",
+	"publishable_key" => "pk_test_fCgOGtUXuAWf44TdWl3liZOd"
 );
 ?>
 <script>
@@ -49,7 +49,8 @@ if(isset($_REQUEST['del_id']) && !empty($_REQUEST['del_id']))
 
 if(isset($_POST['calculate_shipping']))
 {
-	$_SESSION['cart']['shipping_details']= array('name'=>$_POST['shipping'],'price'=>$_POST['shipping_price']);
+	$shipping = explode(',', $_POST['shipping']);
+	$_SESSION['cart']['shipping_details']= array('name'=>$shipping[0],'price'=>$shipping[1]);
 }
 
 // if the user updates cart
@@ -134,8 +135,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
                             </tbody>
                             <tfoot>
                             	<?php 
-                            	if(!isset($_SESSION['cart']['shipping_details']))
-								{
+                            	
 									
 									if(isset($_SESSION['user_id']))
 	                            	{
@@ -176,7 +176,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 												<td colspan="2"><?php echo $name;?></td>
 												<td><?php echo $price;?></td>
 												<td>
-													<input type="radio" name="shipping" value="<?php echo $name;?>">
+													<input type="radio" name="shipping" <?php if($name== $_SESSION['cart']['shipping_details']['name']){echo 'checked';}else{echo '';} ?> value="<?php echo $name.','.$price;?>">
 													<input type="hidden" name="shipping_price" value="<?php echo $price;?>">
 													<input type="hidden" name="order_weight" value="<?php if(!empty($weight)){ echo $weight; } ?>">
 												</td>
@@ -194,28 +194,29 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 	                                </form>
 	                                <?php 
 	                                }
-	                                ?>
-	                                <tr>
-	                                    <th colspan="5">Subtotal</th>
-	                                    <th colspan="2"><?php echo '$'.$total; ?></th>
-	                                </tr>
 	                                
-                                <?php 
-                                } 
-                                else
-                                {
-                                	$total += $_SESSION['cart']['shipping_details']['price'];
-									$total = number_format((float)$total, 2, '.', '');
-									?>
-									<tr>
-	                                    <th colspan="5">Total</th>
-	                                    <th colspan="2"><?php echo '$'.$total; ?></th>
-	                                </tr>
-									<?php
-									
-								}
+	                                if(!isset($_SESSION['cart']['shipping_details']))
+									{
+										?>
+										<tr>
+		                                    <th colspan="5">Subtotal</th>
+		                                    <th colspan="2"><?php echo '$'.$total; ?></th>
+		                                </tr>
+										<?php
+	                                } 
+	                                else
+	                                {
+	                                	$total += $_SESSION['cart']['shipping_details']['price'];
+										$total = number_format((float)$total, 2, '.', '');
+										$order_total = $total;
+										?>
+										<tr>
+		                                    <th colspan="5">Total</th>
+		                                    <th colspan="2"><?php echo '$'.$total; ?></th>
+		                                </tr>
+										<?php
+									}
                                 ?>
-                                
                             </tfoot>
                         </table>
                     </div>
@@ -243,8 +244,8 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 								?>
 								
 								
-					            <form action="charge.php" method="POST" style="display: inline-block;">
-					            	
+					            <form action="<?php echo ROOTURL; ?>charge.php" method="POST" style="display: inline-block;">
+					            	<input type="hidden" name="order_total" value="<?php echo number_format((float)$order_total, 2, '.', '');?>" />
 									<script
 									  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 									  data-key="<?php echo $stripe['publishable_key']; ?>"
@@ -256,7 +257,7 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
 									  data-currency="cad">
 									</script>
 									<input type="hidden" name="stripeAmount" value="<?php echo round($total*100);?>" />
-									<input type="hidden" name="order_total" value="<?php echo $total;?>" />
+									
 								</form>
 								<!--<button type="button" onclick="place_order()" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></button>-->
 								<?php

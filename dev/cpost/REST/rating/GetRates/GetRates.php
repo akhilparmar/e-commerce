@@ -12,6 +12,7 @@
 
 function get_shipping_rates($pin)
 {
+
 // Your username, password and customer number are imported from the following file    	
 // CPCWS_Rating_PHP_Samples\REST\rating\user.ini 
 $userProperties = parse_ini_file(realpath(dirname($_SERVER['SCRIPT_FILENAME'])) . '/cpost/REST/rating/user.ini');
@@ -67,9 +68,7 @@ curl_close($curl);
 
 //using SimpleXML to parse xml response
 libxml_use_internal_errors(true);
-
 $xml = new SimpleXMLElement($curl_response);
-
 
 $response = array();
 

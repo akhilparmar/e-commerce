@@ -1,6 +1,6 @@
 <?php
 @session_start();
-
+ini_set('display_errors', 1);
 //including database connection
 require_once 'dbconnect.php';
 
@@ -10,6 +10,7 @@ if(!isset($_REQUEST['uid']))
 	header('location:'.BASEURL.'login.php');
 }
 
+
 //if there is post request from reset form 
 if(isset($_POST['btn-reset'])) {
 	$pass = $_POST['password'];
@@ -17,18 +18,20 @@ if(isset($_POST['btn-reset'])) {
 	if($pass == $cpass)
 	{
 		//create an hased md5 password
-		$hashed_password = md5($upass); 
+		$hashed_password = md5($pass); 
 		
 			//insert the data if the email not found	
-			$query = mysqli_query($con, "UPDATE user set password=".$_POST['password']" where id=".$_REQUEST['uid']);
+			$query = mysqli_query($con, "UPDATE user set password = '".$hashed_password."' where id=".$_REQUEST['uid']);
 
 			if ($query) {
 				$msg = "<div class='alert alert-success'>
 							<span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully registered !
 						</div>";
+					
+				header("location:".BASEURL.'login.php');
 			}else {
 				$msg = "<div class='alert alert-danger'>
-							<span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while registering !
+							<span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while reset password !
 						</div>";
 			}
 			

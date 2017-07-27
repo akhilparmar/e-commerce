@@ -54,8 +54,7 @@ if(isset($_POST['add_product']))
 	}
 	
 	
-	
-	$query = mysqli_query($con, "Insert into products values('null', '".$_POST['name']."', '".$filename."', '".$_POST['cat_id']."', '".$_POST['price']."', '".$_POST['qty']."', '".$_POST['description']."','".$_POST['weight']."')" );	
+	$query = mysqli_query($con, "Insert into products (name,image,cat_id,price,qty,description,weight) values('".$_POST['name']."', '".$filename."', '".$_POST['cat_id']."', '".$_POST['price']."', '".$_POST['qty']."', '".$_POST['description']."','".$_POST['weight']."')" );	
 }
 ?>
 

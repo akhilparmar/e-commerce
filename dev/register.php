@@ -24,7 +24,7 @@ if(isset($_POST['btn-signup'])) {
 	$count = mysqli_num_rows($check_email);
 	
 	if ($count==0) {
-		$subject = "";
+		$subject = "Successfully Registred";
 		$link = BASEURL."confirm_email.php?uname=".$uname."&email=".$email."&upass=".$upass;
 		$message = "Welcome to our store.. <br /> Please click below link to confirm your Email address and complete the registration process. <br />".$link;
 		
@@ -34,8 +34,8 @@ if(isset($_POST['btn-signup'])) {
 
 		// More headers
 		//$headers .= 'From: nevilgolwala@gmail.com' . "\r\n"; 
-		$headers .= 'From: <nevilgolwala@gmail.com>' . "\r\n" .
-					'Reply-To: <nevilgolwala@gmail.com>';		
+		$headers .= 'From: <georgesettotest@gmail.com>' . "\r\n" .
+					'Reply-To: <georgesettotest@gmail.com>';		
 		if(mail($email,$subject,$message,$headers,'-fwebmaster@example.com'))
 		{
 			$msg = "<div class='alert alert-success'>
@@ -121,6 +121,7 @@ if(isset($_POST['btn-signup'])) {
 							  <br />
 							  
 							  <div>Already have account? <a href="<?php echo BASEURL; ?>login.php">Sign in here</a></div>
+							  <div><a href="<?php echo BASEURL; ?>terms_conditions.php">Terms & conditions</a></div>
 							</form>
 						</div>
 					</div>
