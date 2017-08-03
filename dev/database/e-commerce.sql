@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2017 at 05:23 AM
+-- Generation Time: Aug 03, 2017 at 05:12 AM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -40,7 +40,8 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`, `parent_id`) VALUES
 (5, 'category 1', 0),
-(6, 'test category1111', 5);
+(6, 'test category1111', 5),
+(9, 'sdfsdf sdfs fsdfsfsf', 5);
 
 -- --------------------------------------------------------
 
@@ -65,9 +66,10 @@ INSERT INTO `orders` (`id`, `user_id`, `product_id`, `shipping_method`, `total`,
 (1, 2, '[10]', 'Expedited Parcel', 10915, '11-07-17'),
 (2, 2, '[10]', 'Expedited Parcel', 13315, '11-07-17'),
 (3, 2, '[10,11]', 'Priority', 14815, '11-07-17'),
-(4, 2, '[10,11]', 'Xpresspost', 148, '11-07-17'),
+(4, 7, '[10,11]', 'Xpresspost', 148, '11-07-17'),
 (5, 2, '[10]', 'Expedited Parcel', 25, '11-07-17'),
-(6, 2, '[10]', 'Priority', 25, '12-07-17');
+(6, 2, '[10]', 'Priority', 25, '12-07-17'),
+(7, 10, '[11]', 'Priority', 54, '21-07-17');
 
 -- --------------------------------------------------------
 
@@ -115,9 +117,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `pin`, `address`) VALUES
-(2, 'test', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', 'K1K4T3', 'Ahm,edabad gujarat'),
+(2, 'akhil', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', 'K1K4T3', 'Ahm,edabad gujarat'),
 (3, 'test12', 'test1@test1.com', '5a105e8b9d40e1329780d62ea2265d8a', '380006', 'Ahmedabad, Gujarat'),
-(7, 'test444', 'test4@gmail.com', '86985e105f79b95d6bc918fb45ec7727', '', ''),
+(7, 'test444', 'test4@gmail.com', '86985e105f79b95d6bc918fb45ec7727', 'K9J3W6', ''),
 (8, 'test444', 'test4@gmail.com', '86985e105f79b95d6bc918fb45ec7727', '', '');
 
 --
@@ -156,17 +158,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `user`
 --

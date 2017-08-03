@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.26.2" platform="windows">
+	<Servers>
+		<Server>
+			<Host>138.197.168.56</Host>
+			<Port>22</Port>
+			<Protocol>1</Protocol>
+			<Type>0</Type>
+			<User>root</User>
+			<Keyfile>C:\Users\Sanjay_Damor\Downloads\privat key.ppk</Keyfile>
+			<Logontype>5</Logontype>
+			<TimezoneOffset>0</TimezoneOffset>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<MaximumMultipleConnections>0</MaximumMultipleConnections>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>nevil_ftp</Name>
+			<Comments />
+			<Colour>0</Colour>
+			<LocalDir />
+			<RemoteDir />
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+	</Servers>
+</FileZilla3>
